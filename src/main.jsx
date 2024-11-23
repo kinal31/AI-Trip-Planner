@@ -1,10 +1,27 @@
-import { StrictMode } from 'react'
+import { lazy, StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+// import CreateTrip from './Pages/CreateTrip'
+const CreateTrip = lazy(() => import('./Pages/CreateTrip'))
+// import Header from './components/Custom/HEader'
+const Header = lazy(() => import('./components/Custom/Header'))
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+  },
+  {
+    path: '/create-trip',
+    element: <CreateTrip />,
+  }
+])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <Header/>
+    <RouterProvider router={router} />
   </StrictMode>,
 )
