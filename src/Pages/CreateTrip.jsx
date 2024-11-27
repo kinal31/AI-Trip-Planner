@@ -20,6 +20,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { doc, setDoc } from 'firebase/firestore';
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { db } from '../Services/firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -32,6 +33,8 @@ const CreateTrip = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [openDailog, setOpenDailog] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const API_URL = "https://maps.gomaps.pro/maps/api/place/autocomplete/json";
   const API_KEY = "AlzaSyLPhfgMJoYGtE6B22EbGbExDjtdIP1cNFj";
@@ -147,6 +150,7 @@ const CreateTrip = () => {
       id: docId
     });
     setLoading(false);
+    navigate('/view-trip/'+ docId)
   }
 
   const getUserProfile = (tokenInfo) => {
