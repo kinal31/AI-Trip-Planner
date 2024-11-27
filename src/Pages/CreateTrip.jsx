@@ -37,7 +37,7 @@ const CreateTrip = () => {
   const navigate = useNavigate();
 
   const API_URL = "https://maps.gomaps.pro/maps/api/place/autocomplete/json";
-  const API_KEY = "AlzaSyLPhfgMJoYGtE6B22EbGbExDjtdIP1cNFj";
+  const API_KEY = import.meta.env.VITE_GOMAP_API_KEY ;
 
   const fetchSuggestions = async (value) => {
     if (value.length > 0) {
