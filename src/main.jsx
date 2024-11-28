@@ -5,6 +5,8 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Toaster } from './components/ui/sonner'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import MyTrips from './My-Trips/MyTrips'
+import Footer from './components/Custom/Footer'
 // import CreateTrip from './Pages/CreateTrip'
 const CreateTrip = lazy(() => import('./Pages/CreateTrip'))
 // import Header from './components/Custom/HEader'
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: '/view-trip/:tripId',
     element: <ViewTrip />,
+  },
+  {
+    path: '/mytrip',
+    element: <MyTrips />,
   }
 ])
 
@@ -33,6 +39,7 @@ createRoot(document.getElementById('root')).render(
       <Header />
       <Toaster />
       <RouterProvider router={router} />
+      <Footer/>
     </GoogleOAuthProvider>
   </StrictMode>,
 )

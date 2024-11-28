@@ -3,74 +3,98 @@ import { Button } from '@/components/ui/button'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { IoIosSend } from "react-icons/io";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  EmailShareButton,
+  LinkedinShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  EmailIcon,
+  LinkedinIcon,
+  RedditIcon,
+  TelegramIcon,
+  XIcon
+} from 'react-share';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 const InfoSection = ({ trip }) => {
-  const [photoUrl, setPhotoUrl] = useState('');
+  // const [photoUrl, setPhotoUrl] = useState('');
 
-  useEffect(() => {
-    // console.log('Trip Object:', trip);
-    trip?.userSelection?.location && GetPlaceRef()
-  }, [trip]);
+  // useEffect(() => {
+  //   // console.log('Trip Object:', trip);
+  //   trip?.userSelection?.location && GetPlaceRef()
+  // }, [trip]);
 
-  const GetPlaceRef = async () => {
+  // const GetPlaceRef = async () => {
 
-    const BASE_URL = 'https://maps.gomaps.pro/maps/api/place/textsearch/json'
+  //   const BASE_URL = 'https://maps.gomaps.pro/maps/api/place/textsearch/json'
 
-    if (!trip?.userSelection?.location) {
-      console.error('Location is not available');
-      return;
-    }
-    const location = trip.userSelection.location;
+  //   if (!trip?.userSelection?.location) {
+  //     console.error('Location is not available');
+  //     return;
+  //   }
+  //   const location = trip.userSelection.location;
 
-    try {
-      const response = await axios.get(`${BASE_URL}`, {
-        params: {
-          query: location,
-          key: import.meta.env.VITE_GOMAP_API_KEY // API key as a query parameter
-        }
-      });
-      console.log(response.data.results[0]);
-      console.log(response.data.results[0].reference);
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}`, {
+  //       params: {
+  //         query: location,
+  //         key: import.meta.env.VITE_GOMAP_API_KEY // API key as a query parameter
+  //       }
+  //     });
+  //     console.log(response.data.results[0]);
+  //     console.log(response.data.results[0].reference);
 
-    } catch (error) {
-      console.error('Error fetching place details:', error);
-      throw error; // Rethrow the error for further handling
-    }
-  }
+  //   } catch (error) {
+  //     console.error('Error fetching place details:', error);
+  //     throw error; // Rethrow the error for further handling
+  //   }
+  // }
 
-  useEffect(() => {
-    const fetchPhoto = async () => {
-      const url = await GetPlacePhoto();
-      setPhotoUrl(url);
-    };
-    fetchPhoto();
-  }, []);
-  
-  const GetPlacePhoto = async () => {
-    const BASE_URL = 'https://maps.gomaps.pro/maps/api/place/photo';
-    const photoReference = "AdDdOWrePgFoCWO3P3HEJ9XXy443sHjNrkYiH9eMIc8Zcv7gGEFVezLYaAXqTwPioU6CeZotVKpLUFOTaiHwwx7CgTld3vhofKwLKFnToOleVSoAo42Mucc9Djo5pXfMYBUeKRuHuntQl9hUexmAagW9ZoUCJ5Eo85Yb3njHVVfUsDXdYoed"; // Replace with dynamic data
-    const API_KEY = import.meta.env.VITE_GOMAP_API_KEY;
+  // useEffect(() => {
+  //   const fetchPhoto = async () => {
+  //     const url = await GetPlacePhoto();
+  //     setPhotoUrl(url);
+  //   };
+  //   fetchPhoto();
+  // }, []);
 
-    try {
-      const response = `${BASE_URL}?maxwidth=400&photoreference=${photoReference}&key=${API_KEY}`;
-      console.log('Photo URL:', response);
+  // const GetPlacePhoto = async () => {
+  //   const BASE_URL = 'https://maps.gomaps.pro/maps/api/place/photo';
+  //   const photoReference = "AdDdOWrePgFoCWO3P3HEJ9XXy443sHjNrkYiH9eMIc8Zcv7gGEFVezLYaAXqTwPioU6CeZotVKpLUFOTaiHwwx7CgTld3vhofKwLKFnToOleVSoAo42Mucc9Djo5pXfMYBUeKRuHuntQl9hUexmAagW9ZoUCJ5Eo85Yb3njHVVfUsDXdYoed"; // Replace with dynamic data
+  //   const API_KEY = import.meta.env.VITE_GOMAP_API_KEY;
 
-      // Use the URL in your component (e.g., to set an <img> src)
-      return response;
-    } catch (error) {
-      console.error('Error fetching photo:', error);
-    }
+  //   try {
+  //     const response = `${BASE_URL}?maxwidth=400&photoreference=${photoReference}&key=${API_KEY}`;
+  //     console.log('Photo URL:', response);
+
+  //     // Use the URL in your component (e.g., to set an <img> src)
+  //     return response;
+  //   } catch (error) {
+  //     console.error('Error fetching photo:', error);
+  //   }
+  // };
+
+  const shareUrl = window.location.href;
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareUrl);
+    alert('Link copied to clipboard!');
   };
 
-  
   return (
     <div>
-      {/* <img src="/placeholder.jpg" alt="Header Image" className='h-[340px] w-full object-cover rounded-xl' /> */}
-      {photoUrl ? (
-        <img src={photoUrl} alt="Place" className="h-[340px] w-full object-cover rounded-xl" />
-      ) : (
-        <img src="/placeholder.jpg" alt="Placeholder" className="h-[340px] w-full object-cover rounded-xl" />
-      )}
+      <img src="/placeholder.jpg" alt="Header Image" className='h-[340px] w-full object-cover rounded-xl' />
+
 
       <div className='py-5 flex flex-col gap-3'>
         <h2 className='font-bold text-2xl'>{trip?.userSelection?.location}</h2>
@@ -92,9 +116,98 @@ const InfoSection = ({ trip }) => {
           </div>
 
           {/* Right Section */}
-          <Button className='flex-shrink-0'>
+          {/* <Button className='flex-shrink-0'>
             <IoIosSend />
-          </Button>
+          </Button> */}
+
+
+          <Popover>
+            <PopoverTrigger> <Button className='flex-shrink-0'>
+              <IoIosSend />
+            </Button></PopoverTrigger>
+            <PopoverContent>
+              <div className="flex justify-content-around mb-3 ">
+              <FacebookShareButton url={shareUrl} quote="Check out this video!">
+                <FacebookIcon size={35} round />
+              </FacebookShareButton>
+
+              <TwitterShareButton url={shareUrl} title="Check out this video!">
+                <XIcon size={35} round />
+              </TwitterShareButton>
+
+              <WhatsappShareButton url={shareUrl}>
+                <WhatsappIcon size={35} round />
+              </WhatsappShareButton>
+
+              <EmailShareButton url={shareUrl}>
+                <EmailIcon size={35} round />
+              </EmailShareButton>
+
+              <LinkedinShareButton url={shareUrl}>
+                <LinkedinIcon size={35} round />
+              </LinkedinShareButton>
+
+              <RedditShareButton url={shareUrl}>
+                <RedditIcon size={35} round />
+              </RedditShareButton>
+
+              <TelegramShareButton url={shareUrl}>
+                <TelegramIcon size={35} round />
+              </TelegramShareButton>
+            </div>
+              {/* <input className="mb-3">
+                        <form type="text" value={shareUrl} readOnly />
+                        <button variant="outline-dark" onClick={copyToClipboard}>
+                            Copy Link
+                        </button>
+                    </input> */}
+            </PopoverContent>
+          </Popover>
+
+          {/* Share Popup Modal */}
+          {/* <Modal show={show} onHide={handleClose} backdrop={false} centered style={{zIndex:50}}>
+                <Modal.Header closeButton>
+                    <Modal.Title style={{textTransform: 'none' }}>Share with your friends</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <div className="d-flex justify-content-around mb-3 ">
+                        <FacebookShareButton url={shareUrl} quote="Check out this video!">
+                            <FacebookIcon size={35} round />
+                        </FacebookShareButton>
+
+                        <TwitterShareButton url={shareUrl} title="Check out this video!">
+                            <XIcon size={35} round />
+                        </TwitterShareButton>
+
+                        <WhatsappShareButton url={shareUrl}>
+                            <WhatsappIcon size={35} round />
+                        </WhatsappShareButton>
+
+                        <EmailShareButton url={shareUrl}>
+                            <EmailIcon size={35} round />
+                        </EmailShareButton>
+
+                        <LinkedinShareButton url={shareUrl}>
+                            <LinkedinIcon size={35} round />
+                        </LinkedinShareButton>
+
+                        <RedditShareButton url={shareUrl}>
+                            <RedditIcon size={35} round />
+                        </RedditShareButton>
+
+                        <TelegramShareButton url={shareUrl}>
+                            <TelegramIcon size={35} round />
+                        </TelegramShareButton>
+                    </div>
+                    <InputGroup className="mb-3">
+                        <Form.Control type="text" value={shareUrl} readOnly />
+                        <button variant="outline-dark" onClick={copyToClipboard}>
+                            Copy Link
+                        </button>
+                    </InputGroup>
+                </Modal.Body>
+            </Modal> */}
         </div>
 
 
