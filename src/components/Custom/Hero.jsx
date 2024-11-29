@@ -3,10 +3,11 @@ import { Button } from '../ui/button'
 import { Link, NavLink } from 'react-router-dom'
 import { FaQuoteLeft } from "react-icons/fa";
 import { FaQuoteRight } from "react-icons/fa";
+import { Helmet } from 'react-helmet';
 
 const Hero = () => {
   return (
-    
+
     <>
       {/* <div className='flex flex-col items-center mx-auto px-5 lg:px-10 xl:mx-56 gap-6 md:gap-9'>
         <h1 className='font-extrabold text-[30px] md:text-[40px] lg:text-[50px] text-center mt-10 md:mt-16'>
@@ -33,6 +34,10 @@ const Hero = () => {
 
         </div>
       </div> */}
+      <Helmet>
+        <title>Home - AI Trip Planner</title>
+        <meta name="description" content="Plan and organize your dream trips today with AI Trip Planner." />
+      </Helmet>
       <div className='flex flex-col items-center mx-auto px-5 lg:px-10 xl:mx-56 gap-6 md:gap-9'>
         <h1 className='font-extrabold text-[30px] md:text-[40px] lg:text-[50px] text-center mt-10 md:mt-16'>
           <span className='text-[#81A5D1]'>Discover Your Next Adventure with AI:</span> Personalized Itineraries at Your Fingertips

@@ -3,6 +3,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import UserTripCardItem from './UserTripCardItem';
+import { Helmet } from 'react-helmet';
 
 const MyTrips = () => {
     const navigate = useNavigate();
@@ -29,6 +30,14 @@ const MyTrips = () => {
     }
 
     return (
+        <>
+        <Helmet>
+             <title>My Trips - AI Trip Planner</title>
+                <meta 
+                    name="description" 
+                    content="View and manage all your saved trips in one place with AI Trip Planner. Start planning your next adventure today!" 
+                />
+        </Helmet>
         <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
             <h2 className='font-bold text-3xl'>My Trips</h2>
 
@@ -41,6 +50,7 @@ const MyTrips = () => {
                 ))}
             </div>
         </div>
+        </>
     )
 }
 

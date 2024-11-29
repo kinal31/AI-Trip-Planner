@@ -4,6 +4,7 @@ import Hotel from '@/View-Trip/Hotel';
 import InfoSection from '@/View-Trip/InfoSection';
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom'
 import { toast } from 'sonner';
 
@@ -20,26 +21,34 @@ const ViewTrip = () => {
             // console.log(docSnap.data());
             setTrip(docSnap.data());
         }
-        else{
+        else {
             console.log('No such document!');
             toast("No trip found")
         }
     }
 
-    useEffect(() =>{
+    useEffect(() => {
         tripId && GetTripData();
-    },[tripId]);
+    }, [tripId]);
 
     return (
-        <div className='p-10 md:px-20 lg:px-44 xl:px-56'>
-            {/* Information Section */}
-            <InfoSection trip={trip} />
-            {/* Recommended hotel  */}
-            <Hotel trip={trip} />
-            {/* Daily plan */}
-            <DailyPlan trip={trip} />
-            
-        </div>
+
+        <>
+            <Helmet>
+                <title>View Trip - AI Trip Planner</title>
+                <meta name="description" content={`Details for trip ID: ${tripId}`} />
+            </Helmet>
+            <div className='p-10 md:px-20 lg:px-44 xl:px-56'>
+                {/* Information Section */}
+                <InfoSection trip={trip} />
+                {/* Recommended hotel  */}
+                <Hotel trip={trip} />
+                {/* Daily plan */}
+                <DailyPlan trip={trip} />
+
+            </div>
+        </>
+
     )
 }
 

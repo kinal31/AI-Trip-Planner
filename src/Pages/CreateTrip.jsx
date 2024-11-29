@@ -21,6 +21,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { db } from '../Services/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -306,6 +307,11 @@ const CreateTrip = () => {
 
     // </div>
     <>
+      <Helmet>
+        <title>Create a Trip - AI Trip Planner </title>
+        <meta name="description" content="Easily create and manage your trips with AI Trip Planner." />
+      </Helmet>
+
       <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
         <h2 className='font-bold text-2xl sm:text-3xl text-center sm:text-left'>
           Tell us your travel preferences 🏕️🌴
