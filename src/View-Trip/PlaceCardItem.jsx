@@ -27,7 +27,8 @@ const PlaceCardItem = ({ place }) => {
                                 Rating: {place.rating} - Highly recommended!
                             </span>
                         )}</h2>
-                        <h2>Time : {place.time}</h2>
+                        
+                        {place.time && <h2> Time : {place.time}</h2> }
                     </div>
 
                     <h2 className='mt-2 text-sm sm:text-base'> {place.ticketPricing === "Placeholder Price" ? (
