@@ -20,7 +20,11 @@ import { Link, NavLink } from 'react-router-dom';
 
 
 const Header = () => {
-  const [openDailog, setOpenDailog] = useState(false);
+  // const [openDailog, setOpenDailog] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -52,14 +56,14 @@ const Header = () => {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem('user', JSON.stringify(res.data));
-        setOpenDailog(false);
+        setIsOpen(false);
       })
       .catch((error) => console.error(error));
   };
 
-  const handleCloseDialog = () => {
-    setOpenDailog(false); // Close the dialog by setting the state to false
-  };
+  // const handleCloseDialog = () => {
+  //   setOpenDailog(false); // Close the dialog by setting the state to false
+  // };
 
   return (
 
@@ -93,43 +97,30 @@ const Header = () => {
                   </PopoverContent>
                 </Popover>
               </div> :
-              // <Button onClick={() => setOpenDailog(true)} className="text-sm md:text-base">
-              //   Sign In
-              // </Button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button className="text-sm md:text-base">
-                    Sign In
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogDescription>
-                    <img src="/logo.png" alt="" className="w-28 mx-auto" />
-                    <h2 className="font-bold text-base md:text-lg mt-5 md:mt-7 text-center">
-                      Sign In With Google
-                    </h2>
-                    <span className="block text-sm md:text-base text-center">
-                      Sign in to the app with your Google authentication securely
-                    </span>
-                    <Button
-                      className="w-full mt-4 md:mt-5 flex gap-4 items-center justify-center"
-                      onClick={login}
-                    >
-                      <FcGoogle className="h-6 w-6 md:h-7 md:w-7" />
-                      Sign In With Google
-                    </Button>
-                  </DialogDescription>
-                </DialogContent>
-              </Dialog>
+              <Button onClick={openModal} className="text-sm md:text-base">
+                Sign In
+              </Button>
           }
-        </div>
       </div>
-      {/* <Dialog open={openDailog} onClose={handleCloseDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle></DialogTitle>
-            <DialogDescription>
-              <img src="/logo.png" alt="" className="w-28 mx-auto" />
+    </div >
+
+       {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg w-11/12 md:w-1/2 lg:w-1/3 p-6">
+            {/* Modal Header */}
+            <div className="flex justify-end items-center  pb-3">
+            
+              <button
+                onClick={closeModal}
+                className="text-gray-500 hover:text-gray-800 text-lg font-bold"
+              >
+                &times; {/* Close Button */}
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="mt-4">
+            <img src="/logo.png" alt="" className="w-28 mx-auto" />
               <h2 className="font-bold text-base md:text-lg mt-5 md:mt-7 text-center">
                 Sign In With Google
               </h2>
@@ -140,10 +131,12 @@ const Header = () => {
                 <FcGoogle className="h-6 w-6 md:h-7 md:w-7" />
                 Sign In With Google
               </Button>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog> */}
+            </div>
+
+         
+          </div>
+        </div>
+      )}
 
     </>
   )
