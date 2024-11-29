@@ -27,17 +27,17 @@ const PlaceCardItem = ({ place }) => {
                                 Rating: {place.rating} - Highly recommended!
                             </span>
                         )}</h2>
-                        
+
                         {place.time && <h2> Time : {place.time}</h2> }
                     </div>
 
                     <h2 className='mt-2 text-sm sm:text-base'> {place.ticketPricing === "Placeholder Price" ? (
                         <span>
-                            Price : Check On Official Site!
+                            Entry Fee : Check On Official Site!
                         </span>
                     ) : (
                         <span>
-                            Price : {place.ticketPricing}
+                            Entry Fee : {place.ticketPricing}
                         </span>
                     )}</h2>
                 </div>
