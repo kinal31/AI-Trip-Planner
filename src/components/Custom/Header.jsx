@@ -57,27 +57,31 @@ const Header = () => {
       .catch((error) => console.error(error));
   };
 
+  const handleCloseDialog = () => {
+    setOpenDailog(false); // Close the dialog by setting the state to false
+  };
+
   return (
 
     <>
       <div className="p-3 shadow-sm flex justify-between items-center px-5 flex-wrap md:flex-nowrap">
-        <a href='/'>
-          <img src="/logo.png" alt="logo" className="w-[50px] h-[50px]  md:w-[80px] md:h-[80px] rounded-full" />
-        </a>
+        <NavLink to={'/'}>
+          <img src="/logo.png" alt="logo" className="w-[50px] h-[50px]  md:w-[80px] md:h-[80px] rounded-full cursor-pointer" />
+        </NavLink>
         <div className="mt-3 md:mt-0 flex flex-wrap justify-center md:justify-end items-center gap-3 md:gap-5">
           {
             user ?
               <div className='flex items-center gap-3 md:gap-5 flex-wrap md:flex-nowrap'>
-                <a href="/create-trip">
+                <NavLink to={"/create-trip"}>
                   <Button variant="outline" className="rounded-full text-sm md:text-lg">
                     + Create Trip
                   </Button>
-                </a>
-                <a href="/mytrip">
+                </NavLink>
+                <NavLink to={"/mytrip"}>
                   <Button variant="outline" className="rounded-full text-sm md:text-lg">
                     My Trips
                   </Button>
-                </a>
+                </NavLink>
                 <Popover>
                   <PopoverTrigger>
                     <img src={user?.picture} alt="profile" className="rounded-full h-8 w-8 md:h-[35px] md:w-[35px]" />
@@ -95,7 +99,7 @@ const Header = () => {
           }
         </div>
       </div>
-      <Dialog open={openDailog}>
+      <Dialog open={openDailog} onClose={handleCloseDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle></DialogTitle>

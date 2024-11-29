@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../ui/button'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { FaQuoteLeft } from "react-icons/fa";
 import { FaQuoteRight } from "react-icons/fa";
 
@@ -41,9 +41,9 @@ const Hero = () => {
           Your personal trip planner and travel curator, creating custom itineraries tailored to your interests and budget
         </p>
 
-        <Link to={'/create-trip'}>
+        <NavLink to={'/create-trip'}>
           <Button className="text-sm md:text-base px-4 py-2 md:px-6 md:py-3">Get Started, It's Free!</Button>
-        </Link>
+        </NavLink>
 
         <div>
           <img
