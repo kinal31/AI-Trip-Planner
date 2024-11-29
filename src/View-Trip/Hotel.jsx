@@ -26,7 +26,7 @@ const Hotel = ({ trip }) => {
         {trip?.tripData?.hotels.map((hotel, index) => (
           <Link to={'https://www.google.com/maps/search/?api=1&query=' + hotel.hotelName + ',' + hotel.hotelAddress} target='_blank' key={index}>
             <div key={index} className='hover:scale-105 transition-all cursor-pointer' >
-             
+
               <img
                 src={HotelImage[index]?.image || "/placeholder.jpg"}
                 alt={hotel.hotelName}
@@ -35,7 +35,13 @@ const Hotel = ({ trip }) => {
 
 
               <div className='my-2 '>
-                <h2 className='font-medium'>{hotel.hotelName}</h2>
+                <h2 className='font-medium'>{hotel.hotelName.startsWith("Hotel Name ") ? (
+                  <span>
+                    Check On Google Map!
+                  </span>
+                ) : (
+                  <span>{hotel.hotelName}</span>
+                )}</h2>
                 <h2 className='text-xs '>📍 {hotel.hotelAddress}</h2>
                 <h2 className='text-xs text-gray-400'> {hotel.description}</h2>
                 {/* <h2 className='text-xs text-gray-500'> {hotel.rating}</h2> */}

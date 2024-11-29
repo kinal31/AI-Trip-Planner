@@ -15,12 +15,30 @@ const PlaceCardItem = ({ place }) => {
 
                 {/* Text Content Section */}
                 <div className='flex flex-col justify-between flex-1'>
-                    <div>
+                    <div className='flex flex-col gap-2'>
                         <h2 className='text-base sm:text-lg font-bold'>{place.placeName}</h2>
                         <p className='text-xs sm:text-sm text-gray-400'>{place.placeDetails}</p>
-                        <h2 className='text-sm sm:text-base'>⭐ {place.rating}</h2>
+                        <h2 className='text-sm sm:text-base'>⭐ {place.rating === "Placeholder Rating" ? (
+                            <span>
+                                Check On Google Map!
+                            </span>
+                        ) : (
+                            <span>
+                                Rating: {place.rating} - Highly recommended!
+                            </span>
+                        )}</h2>
+                        <h2>Time : {place.time}</h2>
                     </div>
-                    <h2 className='mt-2 text-sm sm:text-base'>{place.ticketPricing}</h2>
+
+                    <h2 className='mt-2 text-sm sm:text-base'> {place.ticketPricing === "Placeholder Price" ? (
+                        <span>
+                            Price : Check On Official Site!
+                        </span>
+                    ) : (
+                        <span>
+                            Price : {place.ticketPricing}
+                        </span>
+                    )}</h2>
                 </div>
             </div>
 

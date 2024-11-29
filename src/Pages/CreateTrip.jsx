@@ -131,9 +131,9 @@ const CreateTrip = () => {
       .replace('{budget}', formData?.budget)
       .replace('{totalDay}', formData?.noOfDay)
 
-    console.log(FINAL_PROMPT);
+    // console.log(FINAL_PROMPT);
     const result = await chatSession.sendMessage(FINAL_PROMPT);
-    console.log(result?.response?.text());
+    // console.log(result?.response?.text());
     setLoading(false);
     SaveAITrip(result?.response?.text());
   };

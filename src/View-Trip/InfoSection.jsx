@@ -127,87 +127,53 @@ const InfoSection = ({ trip }) => {
             </Button></PopoverTrigger>
             <PopoverContent>
               <div className="flex justify-content-around mb-3 ">
-              <FacebookShareButton url={shareUrl} quote="Check out this video!">
-                <FacebookIcon size={35} round />
-              </FacebookShareButton>
+                <FacebookShareButton url={shareUrl} quote="Check out this video!">
+                  <FacebookIcon size={35} round />
+                </FacebookShareButton>
 
-              <TwitterShareButton url={shareUrl} title="Check out this video!">
-                <XIcon size={35} round />
-              </TwitterShareButton>
+                <TwitterShareButton url={shareUrl} title="Check out this video!">
+                  <XIcon size={35} round />
+                </TwitterShareButton>
 
-              <WhatsappShareButton url={shareUrl}>
-                <WhatsappIcon size={35} round />
-              </WhatsappShareButton>
+                <WhatsappShareButton url={shareUrl}>
+                  <WhatsappIcon size={35} round />
+                </WhatsappShareButton>
 
-              <EmailShareButton url={shareUrl}>
-                <EmailIcon size={35} round />
-              </EmailShareButton>
+                <EmailShareButton url={shareUrl}>
+                  <EmailIcon size={35} round />
+                </EmailShareButton>
 
-              <LinkedinShareButton url={shareUrl}>
-                <LinkedinIcon size={35} round />
-              </LinkedinShareButton>
+                <LinkedinShareButton url={shareUrl}>
+                  <LinkedinIcon size={35} round />
+                </LinkedinShareButton>
 
-              <RedditShareButton url={shareUrl}>
-                <RedditIcon size={35} round />
-              </RedditShareButton>
+                <RedditShareButton url={shareUrl}>
+                  <RedditIcon size={35} round />
+                </RedditShareButton>
 
-              <TelegramShareButton url={shareUrl}>
-                <TelegramIcon size={35} round />
-              </TelegramShareButton>
-            </div>
-              {/* <input className="mb-3">
-                        <form type="text" value={shareUrl} readOnly />
-                        <button variant="outline-dark" onClick={copyToClipboard}>
-                            Copy Link
-                        </button>
-                    </input> */}
+                <TelegramShareButton url={shareUrl}>
+                  <TelegramIcon size={35} round />
+                </TelegramShareButton>
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="text"
+                  value={shareUrl}
+                  readOnly
+                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  onClick={copyToClipboard}
+                  className="mt-2 px-4 py-2 border border-gray-700 text-gray-700 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-700"
+                >
+                  Copy Link
+                </button>
+              </div>
+
             </PopoverContent>
           </Popover>
 
-          {/* Share Popup Modal */}
-          {/* <Modal show={show} onHide={handleClose} backdrop={false} centered style={{zIndex:50}}>
-                <Modal.Header closeButton>
-                    <Modal.Title style={{textTransform: 'none' }}>Share with your friends</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-
-                    <div className="d-flex justify-content-around mb-3 ">
-                        <FacebookShareButton url={shareUrl} quote="Check out this video!">
-                            <FacebookIcon size={35} round />
-                        </FacebookShareButton>
-
-                        <TwitterShareButton url={shareUrl} title="Check out this video!">
-                            <XIcon size={35} round />
-                        </TwitterShareButton>
-
-                        <WhatsappShareButton url={shareUrl}>
-                            <WhatsappIcon size={35} round />
-                        </WhatsappShareButton>
-
-                        <EmailShareButton url={shareUrl}>
-                            <EmailIcon size={35} round />
-                        </EmailShareButton>
-
-                        <LinkedinShareButton url={shareUrl}>
-                            <LinkedinIcon size={35} round />
-                        </LinkedinShareButton>
-
-                        <RedditShareButton url={shareUrl}>
-                            <RedditIcon size={35} round />
-                        </RedditShareButton>
-
-                        <TelegramShareButton url={shareUrl}>
-                            <TelegramIcon size={35} round />
-                        </TelegramShareButton>
-                    </div>
-                    <InputGroup className="mb-3">
-                        <Form.Control type="text" value={shareUrl} readOnly />
-                        <button variant="outline-dark" onClick={copyToClipboard}>
-                            Copy Link
-                        </button>
-                    </InputGroup>
-                </Modal.Body>
-            </Modal> */}
         </div>
 
 

@@ -58,49 +58,11 @@ const Header = () => {
   };
 
   return (
-    // <div className="p-3 shadow-sm flex justify-between items-center px-5">
-    //   <img src="/logo.svg" alt="logo" />
-    //   <div>
-    //     {
-    //       user ?
-    //         <div className='flex items-center gap-5'>
-    //           <a href="/create-trip">
-    //             <Button variant="outline" className="rounded-full text-lg" >+ Create Trip</Button>
-    //           </a>
-    //           <a href="/mytrip">
-    //             <Button variant="outline" className="rounded-full text-lg">My Trips</Button>
-    //           </a>              
-    //           <Popover>
-    //             <PopoverTrigger><img src={user?.picture} alt="profile" className='rounded-full h-[35px] w-[35px] ' /></PopoverTrigger>
-    //             <PopoverContent >
-    //               <h2 onClick={handleLogout} className='cursor-pointer'>Logout</h2></PopoverContent>
-    //           </Popover>
 
-    //         </div> : <Button onClick={() => setOpenDailog(true)}>SignIn</Button>
-    //     }
-    //   </div>
-    //   <Dialog open={openDailog} >
-
-    //     <DialogContent>
-    //       <DialogHeader>
-
-    //         <DialogTitle></DialogTitle>
-    //         <DialogDescription>
-    //           <img src="/logo.svg" alt="" />
-    //           <h2 className='font-bold text-lg mt-7 '>Sign In With Google </h2>
-    //           <span>Sign in to the app with your Google authentication securely </span>
-
-    //           <Button className='w-full mt-5 flex gap-4 items-center' onClick={login}>
-    //             <FcGoogle className='h-7 w-7' /> Sign In With Google</Button>
-    //         </DialogDescription>
-    //       </DialogHeader>
-    //     </DialogContent>
-    //   </Dialog>
-    // </div>
     <>
       <div className="p-3 shadow-sm flex justify-between items-center px-5 flex-wrap md:flex-nowrap">
         <a href='/'>
-          <img src="/logo.png" alt="logo" className="w-[80px] h-[80px] md:w-auto rounded-full" />
+          <img src="/logo.png" alt="logo" className="w-[50px] h-[50px]  md:w-[80px] md:h-[80px] rounded-full" />
         </a>
         <div className="mt-3 md:mt-0 flex flex-wrap justify-center md:justify-end items-center gap-3 md:gap-5">
           {

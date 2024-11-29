@@ -49,7 +49,7 @@ const Hero = () => {
           <img
             src="/Homepage-image.jpg"
             alt="homepage-image"
-            className='h-[250px] md:h-[300px] lg:h-[400px] shadow-2xl hover:scale-105 transition-all max-w-full'
+            className='h-[250px] md:h-[300px] lg:h-[400px] shadow-2xl hover:scale-105 transition-all max-w-full mx-auto'
           />
 
           <div className='text-[#81A5D1] flex items-center mt-10 justify-center text-lg'>
