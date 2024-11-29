@@ -93,18 +93,43 @@ const Header = () => {
                   </PopoverContent>
                 </Popover>
               </div> :
-              <Button onClick={() => setOpenDailog(true)} className="text-sm md:text-base">
-                Sign In
-              </Button>
+              // <Button onClick={() => setOpenDailog(true)} className="text-sm md:text-base">
+              //   Sign In
+              // </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="text-sm md:text-base">
+                    Sign In
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogDescription>
+                    <img src="/logo.png" alt="" className="w-28 mx-auto" />
+                    <h2 className="font-bold text-base md:text-lg mt-5 md:mt-7 text-center">
+                      Sign In With Google
+                    </h2>
+                    <span className="block text-sm md:text-base text-center">
+                      Sign in to the app with your Google authentication securely
+                    </span>
+                    <Button
+                      className="w-full mt-4 md:mt-5 flex gap-4 items-center justify-center"
+                      onClick={login}
+                    >
+                      <FcGoogle className="h-6 w-6 md:h-7 md:w-7" />
+                      Sign In With Google
+                    </Button>
+                  </DialogDescription>
+                </DialogContent>
+              </Dialog>
           }
         </div>
       </div>
-      <Dialog open={openDailog} onClose={handleCloseDialog}>
+      {/* <Dialog open={openDailog} onClose={handleCloseDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle></DialogTitle>
             <DialogDescription>
-              <img src="/logo.svg" alt="" className="w-28 mx-auto" />
+              <img src="/logo.png" alt="" className="w-28 mx-auto" />
               <h2 className="font-bold text-base md:text-lg mt-5 md:mt-7 text-center">
                 Sign In With Google
               </h2>
@@ -118,7 +143,7 @@ const Header = () => {
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
 
     </>
   )
