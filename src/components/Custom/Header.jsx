@@ -6,17 +6,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios';
-import { Link, NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 
 
 const Header = () => {

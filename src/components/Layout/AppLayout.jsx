@@ -12,7 +12,7 @@ const AppLayout = () => {
       <Helmet>
         <title>AI Trip Planner</title>
         <meta name="description" content="Plan and organize your trips effortlessly with AI Trip Planner." />
-        <meta name='keyword'  content=' AI Trip Planner, trip planning, travel planning, trip organizer, travel organizer' />
+        <meta name='keyword' content=' AI Trip Planner, trip planning, travel planning, trip organizer, travel organizer' />
         <link rel="icon" href="/logo.png" />
 
         <meta name="author" content="Kinal Kotheeya" />
@@ -21,9 +21,9 @@ const AppLayout = () => {
 
         {/* Open Graph Meta Tags for Social Media */}
         <meta property="og:title" content="AI Trip Planner - Personalized Travel Itineraries" />
-        <meta 
-          property="og:description" 
-          content="Plan and organize your trips effortlessly with AI Trip Planner. Get personalized recommendations and explore top destinations worldwide." 
+        <meta
+          property="og:description"
+          content="Plan and organize your trips effortlessly with AI Trip Planner. Get personalized recommendations and explore top destinations worldwide."
         />
         <meta property="og:image" content="/default-social-thumbnail.png" />
         <meta property="og:url" content="https://aitrip-planner-kk.netlify.app/" />
@@ -32,9 +32,9 @@ const AppLayout = () => {
         {/* Twitter Meta Tags for Social Media */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI Trip Planner - Personalized Travel Itineraries" />
-        <meta 
-          name="twitter:description" 
-          content="Plan and organize your trips effortlessly with AI Trip Planner. Explore personalized travel recommendations and top destinations." 
+        <meta
+          name="twitter:description"
+          content="Plan and organize your trips effortlessly with AI Trip Planner. Explore personalized travel recommendations and top destinations."
         />
         {/* <meta name="twitter:image" content="/default-social-thumbnail.png" />
         <meta name="twitter:site" content="@yourtwitterhandle" /> */}
@@ -55,9 +55,12 @@ const AppLayout = () => {
           })}
         </script>
       </Helmet>
-      <Header />
-      <Outlet />
-      <Footer />
+      <div className='flex flex-col min-h-screen'>
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
+
     </>
   )
 }
