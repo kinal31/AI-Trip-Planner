@@ -8,7 +8,7 @@ import {
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios';
-import {  NavLink } from 'react-router-dom';
+import {  NavLink, useNavigate, useNavigation } from 'react-router-dom';
 
 
 const Header = () => {
@@ -17,6 +17,7 @@ const Header = () => {
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -27,7 +28,8 @@ const Header = () => {
   const handleLogout = () => {
     googleLogout();
     localStorage.removeItem("user");
-    window.location.reload();
+    navigate('/');
+    // window.location.reload();
   }
 
   const login = useGoogleLogin({
