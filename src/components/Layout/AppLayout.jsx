@@ -57,7 +57,10 @@ const AppLayout = () => {
       </Helmet>
       <div className='flex flex-col min-h-screen'>
         <Header />
-        <Outlet />
+        <main className='min-h-screen'>
+
+          <Outlet />
+        </main>
         <Footer />
       </div>
 
