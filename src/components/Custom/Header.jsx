@@ -91,7 +91,7 @@ const Header = () => {
       
       // Render reCAPTCHA
       captchaRef.current = window.grecaptcha.render(captchaContainerRef.current, {
-        'sitekey': '6Lei8iYrAAAAANsRnGtyWn8ULtwuCvzyZuXr6lUc', // Your existing reCAPTCHA site key
+        'sitekey': '6LcqPycrAAAAACV2u_ivffVyMma7klWDnsNcsyhG', // Your existing reCAPTCHA site key
         'callback': onCaptchaVerified,
         'expired-callback': onCaptchaExpired
       });
