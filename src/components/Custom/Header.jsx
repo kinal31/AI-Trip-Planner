@@ -10,12 +10,36 @@ import { FcGoogle } from "react-icons/fc";
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 
+// Import Firebase SDK components
+// Ensure you have firebase installed: npm install firebase
+import { initializeApp } from 'firebase/app';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
+import { app } from '@/Services/firebaseConfig';
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [captchaToken, setCaptchaToken] = useState(null);
+  const [appCheckInitialized, setAppCheckInitialized] = useState(false);
   const captchaRef = useRef(null);
   const captchaContainerRef = useRef(null);
+
+  // Initialize Firebase and App Check when component mounts
+  useEffect(() => {
+   
+
+    // In development mode, uncomment this line to get debug tokens
+    // window.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+
+    // Initialize App Check
+    const appCheck = initializeAppCheck(app, {
+      provider: new ReCaptchaV3Provider('YOUR_RECAPTCHA_V3_SITE_KEY'),
+      isTokenAutoRefreshEnabled: true
+    });
+
+    setAppCheckInitialized(true);
+    console.log("Firebase App Check initialized");
+  }, []);
 
   const openModal = () => {
     setIsOpen(true);
@@ -67,7 +91,7 @@ const Header = () => {
       
       // Render reCAPTCHA
       captchaRef.current = window.grecaptcha.render(captchaContainerRef.current, {
-        'sitekey': '6Lei8iYrAAAAANsRnGtyWn8ULtwuCvzyZuXr6lUc', // Replace with your actual site key
+        'sitekey': '6Lei8iYrAAAAANsRnGtyWn8ULtwuCvzyZuXr6lUc', // Your existing reCAPTCHA site key
         'callback': onCaptchaVerified,
         'expired-callback': onCaptchaExpired
       });
@@ -95,10 +119,12 @@ const Header = () => {
 
   const login = useGoogleLogin({
     onSuccess: (codeResp) => {
-      if (captchaVerified) {
+      if (captchaVerified && appCheckInitialized) {
         getUserProfile(codeResp);
-      } else {
+      } else if (!captchaVerified) {
         alert("Please complete the reCAPTCHA verification first");
+      } else if (!appCheckInitialized) {
+        alert("App verification is initializing. Please try again in a moment.");
       }
     },
     onError: (err) => console.error(err)
@@ -192,7 +218,7 @@ const Header = () => {
               <Button 
                 className="w-full mt-4 md:mt-5 flex gap-4 items-center justify-center" 
                 onClick={login}
-                disabled={!captchaVerified}
+                disabled={!captchaVerified || !appCheckInitialized}
               >
                 <FcGoogle className="h-6 w-6 md:h-7 md:w-7" />
                 Sign In With Google
