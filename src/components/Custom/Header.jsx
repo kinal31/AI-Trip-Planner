@@ -33,7 +33,7 @@ const Header = () => {
 
     // Initialize App Check
     const appCheck = initializeAppCheck(app, {
-      provider: new ReCaptchaV3Provider('YOUR_RECAPTCHA_V3_SITE_KEY'),
+      provider: new ReCaptchaV3Provider('6Lei8iYrAAAAANsRnGtyWn8ULtwuCvzyZuXr6lUc'),
       isTokenAutoRefreshEnabled: true
     });
 
