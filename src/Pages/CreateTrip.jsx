@@ -1,8 +1,5 @@
 import { Input } from '@/components/ui/input';
 import React, { useEffect, useState } from 'react'
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
-// import { useJsApiLoader } from "@react-google-maps/api";
-import axios from "axios";
 import { AI_PROMPT, SelectBudgetOptions, SelectTravelesList } from '../Constants/Option';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -27,73 +24,10 @@ import { Helmet } from 'react-helmet';
 
 const CreateTrip = () => {
   const [formData, setFormData] = useState([])
-
-  const [inputValue, setInputValue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [openDailog, setOpenDailog] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  const API_URL = "https://maps.gomaps.pro/maps/api/place/autocomplete/json";
-  const API_KEY = import.meta.env.VITE_GOMAP_API_KEY;
-
-  const fetchSuggestions = async (value) => {
-    if (value.length > 0) {
-      try {
-        const response = await axios.get(API_URL, {
-          params: {
-            input: value,
-            key: API_KEY,
-          },
-        });
-        setSuggestions(response.data.predictions || []);
-        setIsDropdownOpen(true);
-      } catch (error) {
-        console.error("Error fetching suggestions:", error);
-      }
-    } else {
-      setSuggestions([]);
-      setIsDropdownOpen(false);
-    }
-  };
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setInputValue(value);
-    fetchSuggestions(value);
-
-  };
-
-  const handleSelect = (suggestion) => {
-    setInputValue(suggestion.description);
-    handleInputChange('location', suggestion.description);
-    setSuggestions([]);
-    setIsDropdownOpen(false);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "ArrowDown") {
-      setActiveSuggestionIndex((prevIndex) =>
-        prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
-      );
-    } else if (e.key === "ArrowUp") {
-      setActiveSuggestionIndex((prevIndex) =>
-        prevIndex > 0 ? prevIndex - 1 : 0
-      );
-    } else if (e.key === "Enter" && activeSuggestionIndex >= 0) {
-      handleSelect(suggestions[activeSuggestionIndex]);
-    } else if (e.key === "Escape") {
-      setIsDropdownOpen(false);
-    }
-  };
-
-  const handleBlur = () => {
-    // Close the dropdown after a small delay to allow click to register
-    setTimeout(() => setIsDropdownOpen(false), 200);
-  };
 
   const handleInputChange = (name, value) => {
     setFormData({
@@ -196,58 +130,11 @@ const CreateTrip = () => {
             <h2 className='text-lg sm:text-xl my-3 font-medium text-center sm:text-left'>
               What is your destination of choice?
             </h2>
-
-            <div style={{ position: "relative" }}>
-              <Input
-                type="text"
-                value={inputValue}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                onBlur={handleBlur}
-                placeholder="Search places..."
-                style={{
-                  width: "100%",
-                  padding: "10px",
-                  boxSizing: "border-box",
-                }}
-              />
-              {isDropdownOpen && suggestions.length > 0 && (
-                <ul
-                  style={{
-                    position: "absolute",
-                    top: "100%",
-                    left: 0,
-                    right: 0,
-                    border: "1px solid #ccc",
-                    backgroundColor: "#fff",
-                    listStyle: "none",
-                    margin: 0,
-                    padding: 0,
-                    zIndex: 1000,
-                    maxHeight: "200px",
-                    overflowY: "auto",
-                  }}
-                >
-                  {suggestions.map((suggestion, index) => (
-                    <li
-                      key={suggestion.place_id}
-                      onClick={() => handleSelect(suggestion)}
-                      style={{
-                        padding: "10px",
-                        cursor: "pointer",
-                        backgroundColor:
-                          index === activeSuggestionIndex ? "#f0f0f0" : "#fff",
-                      }}
-                    >
-                      <strong>
-                        {suggestion.description.substring(0, inputValue.length)}
-                      </strong>
-                      {suggestion.description.substring(inputValue.length)}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+            <Input 
+              type="text" 
+              placeholder="Enter your destination" 
+              onChange={(e) => handleInputChange('location', e.target.value)}
+            />
           </div>
 
           {/* Number of Days Input */}
